@@ -169,7 +169,10 @@ def main():
         if system() in ["Windows", "Darwin"]:
             ffmpeg_dir_files = os.listdir(os.path.join(current_dir, "ffmpeg"))
             ffmpeg_dir_files.remove("readme.md")
-
+            try:
+                os.remove(current_dir+"/ffmpeg/.DS_Store")
+            except OSError:
+                pass
             # If the directory is ambiguous stop the script
             if len(ffmpeg_dir_files) > 1:
                 print(
